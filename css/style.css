@@ -6,9 +6,13 @@
 }
 
 body {
-    background-image: url(../img/astronaut.jpg);
-    background-repeat: no-repeat;
+  height: 100%;
+}
 
+.bg-image {
+  height: 100%;
+  position: fixed;
+  top: 0;
 }
 
 
