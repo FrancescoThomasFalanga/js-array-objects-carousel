@@ -67,6 +67,7 @@ const images = [
 startButtonEl.addEventListener("click", () => {
     
     // dai inizio all'autoplay
+    stopTimer();
     startTimer();
 
 });
@@ -179,17 +180,17 @@ function startTimer() {
 
     timer = setInterval(() => {
 
-        isClick++;
-
-        if (isClick >= images.length) {
-
-            isClick = 0;
-
+        if (isClick <= 0) {
+            
+            isClick = images.length;
+            
         }
 
+        isClick--;
+        
         showImage();
         
-    }, 3000);
+    }, 1000);
 
 }
 
@@ -198,11 +199,11 @@ function reverseTimer() {
 
     timer = setInterval(() => {
 
-        isClick--;
+        isClick++;
 
-        if (isClick <= -1) {
+        if (isClick >= images.length) {
 
-            isClick = images.length;
+            isClick = 0;
 
         }
 
