@@ -25,6 +25,11 @@ let downArrowEl = document.getElementById("down-arrow");
 
 let thumbnailsElement = document.getElementById("thumbnails-container");
 
+
+const startButtonEl = document.getElementById("start-button");
+const stopButtonEl = document.getElementById("stop-button");
+const reverseButtonEl = document.getElementById("reverse-button");
+
 // inizializzo contatore per i click
 let isClick = 0;
 
@@ -59,12 +64,31 @@ const images = [
     }
 ];
 
+startButtonEl.addEventListener("click", () => {
+    
+    // dai inizio all'autoplay
+    startTimer();
+
+});
+
+stopButtonEl.addEventListener("click", () => {
+    
+    // dai fine all'autoplay
+    stopTimer();
+
+});
+
+reverseButtonEl.addEventListener("click", () => {
+
+    stopTimer();
+    reverseTimer();
+
+});
+
+
 
 // al caricamento della pagina, l'immagine che verrà mostrata sarà quella con INDICE 0 in quanto, inizializzato il contatore è uguale a 0
 showImage();
-
-// dai inizio all'autoplay
-startTimer();
 
 // Inserisco dinamicamente le thumbnail in pagina:
 images.forEach((activeElement) => {
@@ -160,6 +184,25 @@ function startTimer() {
         if (isClick >= images.length) {
 
             isClick = 0;
+
+        }
+
+        showImage();
+        
+    }, 3000);
+
+}
+
+// per reversare il timer
+function reverseTimer() {
+
+    timer = setInterval(() => {
+
+        isClick--;
+
+        if (isClick <= -1) {
+
+            isClick = images.length;
 
         }
 
