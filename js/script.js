@@ -28,6 +28,8 @@ let thumbnailsElement = document.getElementById("thumbnails-container");
 // inizializzo contatore per i click
 let isClick = 0;
 
+let timer;
+
 // Creo Array di oggetti:
 const images = [
     {
@@ -59,7 +61,10 @@ const images = [
 
 
 // al caricamento della pagina, l'immagine che verrà mostrata sarà quella con INDICE 0 in quanto, inizializzato il contatore è uguale a 0
-showImage()
+showImage();
+
+// dai inizio all'autoplay
+startTimer();
 
 // Inserisco dinamicamente le thumbnail in pagina:
 images.forEach((activeElement) => {
@@ -96,6 +101,9 @@ upArrowEl.addEventListener("click", function() {
 
     // funzione che al click mostra perfettamente l'immagine corrente
     showImage()
+
+    // ferma l'Autoplay ogni volta che clicca manualmente
+    stopTimer();
 })
 
 
@@ -115,7 +123,10 @@ downArrowEl.addEventListener("click", function() {
     console.log(isClick);
 
     // funzione che al click mostra perfettamente l'immagine corrente
-    showImage()
+    showImage();
+
+    // ferma l'Autoplay ogni volta che clicca manualmente
+    stopTimer();
 });
 
 
@@ -134,8 +145,34 @@ downArrowEl.addEventListener("click", function() {
 
 // Mostra l'immagine corrente
 function showImage() {
-    
+
     mainImage.innerHTML = `<img src="${images[isClick].image}" id="main-image"> <h2>${images[isClick].title}</h2> <span>${images[isClick].text}</span>`;
+
+}
+
+// per iniziare il timer
+function startTimer() {
+
+    timer = setInterval(() => {
+
+        isClick++;
+
+        if (isClick >= images.length) {
+
+            isClick = 0;
+
+        }
+
+        showImage();
+        
+    }, 3000);
+
+}
+
+// per fermare il timer
+function stopTimer() {
+
+    clearInterval(timer);
 
 }
 
