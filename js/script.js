@@ -19,9 +19,11 @@ l'utente clicca la freccia verso sinistra.
 
 // variabili di: immagine grossa attiva, slider a sinistra/sopra e destra/sotto
 let mainImage = document.getElementById("active-image");
-let leftArrowEl = document.getElementById("left-arrow");
-let rightArrowEl = document.getElementById("right-arrow");
+let upArrowEl = document.getElementById("up-arrow");
+let downArrowEl = document.getElementById("down-arrow");
 
+
+let thumbnailsElement = document.getElementById("thumbnails-container");
 
 // inizializzo contatore per i click
 let isClick = 0;
@@ -59,8 +61,25 @@ const images = [
 // al caricamento della pagina, l'immagine che verrà mostrata sarà quella con INDICE 0 in quanto, inizializzato il contatore è uguale a 0
 showImage()
 
+// Inserisco dinamicamente le thumbnail in pagina:
+images.forEach((activeElement) => {
 
-leftArrowEl.addEventListener("click", function() {
+    thumbnailsElement.innerHTML += `<img src="${activeElement.image}" class="thumbnail">`;
+
+})
+
+const thumbnails = document.querySelectorAll('.thumbnail');
+
+thumbnails.forEach((thumbnail, index) => {
+  thumbnail.addEventListener('click', () => {
+    isClick = index;
+    showImage();
+  });
+});
+
+
+
+upArrowEl.addEventListener("click", function() {
 
     // diminuisco di 1 il contatore ogni volta che si clicca
     isClick--;
@@ -79,7 +98,8 @@ leftArrowEl.addEventListener("click", function() {
     showImage()
 })
 
-rightArrowEl.addEventListener("click", function() {
+
+downArrowEl.addEventListener("click", function() {
 
     // aumento di 1 il contatore ogni volta che si clicca
     isClick++;
@@ -103,14 +123,6 @@ rightArrowEl.addEventListener("click", function() {
 
 
 
-// Inserisco dinamicamente gli elementi in pagina:
-// images.forEach((activeElement) => {
-
-//     // console.log(images);
-
-//     mainImage.innerHTML = `<img src="${activeElement.image}"> <h2>${activeElement.title}</h2> <span>${activeElement.text}</span>`;
-
-// })
 
 
 
@@ -122,8 +134,8 @@ rightArrowEl.addEventListener("click", function() {
 
 // Mostra l'immagine corrente
 function showImage() {
-
-    mainImage.innerHTML = `<img src="${images[isClick].image}"> <h2>${images[isClick].title}</h2> <span>${images[isClick].text}</span>`;
+    
+    mainImage.innerHTML = `<img src="${images[isClick].image}" id="main-image"> <h2>${images[isClick].title}</h2> <span>${images[isClick].text}</span>`;
 
 }
 
