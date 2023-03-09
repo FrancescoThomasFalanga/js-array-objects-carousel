@@ -190,7 +190,7 @@ function startTimer() {
         
         showImage();
         
-    }, 1000);
+    }, 3000);
 
 }
 
