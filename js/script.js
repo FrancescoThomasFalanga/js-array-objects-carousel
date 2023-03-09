@@ -17,6 +17,14 @@ la freccia verso destra, la miniatura che deve attivarsi sarà l'ultima e viceve
 l'utente clicca la freccia verso sinistra.
 */
 
+// variabili di: immagine grossa attiva, slider a sinistra/sopra e destra/sotto
+let mainImage = document.getElementById("active-image");
+let leftArrowEl = document.getElementById("left-arrow");
+let rightArrowEl = document.getElementById("right-arrow");
+
+
+// inizializzo contatore per i click
+let isClick = 0;
 
 // Creo Array di oggetti:
 const images = [
@@ -46,3 +54,79 @@ const images = [
         text: 'Marvel\'s Avengers is an epic, third-person, action-adventure game that combines an original, cinematic story with single-player and co-operative gameplay.',
     }
 ];
+
+
+// al caricamento della pagina, l'immagine che verrà mostrata sarà quella con INDICE 0 in quanto, inizializzato il contatore è uguale a 0
+showImage()
+
+
+leftArrowEl.addEventListener("click", function() {
+
+    // diminuisco di 1 il contatore ogni volta che si clicca
+    isClick--;
+
+    // se il click diventa < 0 allora porta il isClick alla lunghezza dell'array
+    if (isClick < 0) {
+
+        isClick = images.length - 1;
+
+    }
+
+    // log del click per controllare se l'INDICE dell'array sia giusto
+    console.log(isClick);
+
+    // funzione che al click mostra perfettamente l'immagine corrente
+    showImage()
+})
+
+rightArrowEl.addEventListener("click", function() {
+
+    // aumento di 1 il contatore ogni volta che si clicca
+    isClick++;
+
+    // se il click diventa > della lunghezza dell'array allora porta il isClick a 0
+    if (isClick > images.length - 1) {
+
+        isClick = 0;
+
+    }
+
+    // log del click per controllare se l'INDICE dell'array sia giusto
+    console.log(isClick);
+
+    // funzione che al click mostra perfettamente l'immagine corrente
+    showImage()
+});
+
+
+
+
+
+
+// Inserisco dinamicamente gli elementi in pagina:
+// images.forEach((activeElement) => {
+
+//     // console.log(images);
+
+//     mainImage.innerHTML = `<img src="${activeElement.image}"> <h2>${activeElement.title}</h2> <span>${activeElement.text}</span>`;
+
+// })
+
+
+
+
+
+// ________________________________________________________________________________________________________________________________________________
+//                                                      FUNCTION
+// ________________________________________________________________________________________________________________________________________________
+
+// Mostra l'immagine corrente
+function showImage() {
+
+    mainImage.innerHTML = `<img src="${images[isClick].image}"> <h2>${images[isClick].title}</h2> <span>${images[isClick].text}</span>`;
+
+}
+
+// ________________________________________________________________________________________________________________________________________________
+//                                                      /FUNCTION
+// ________________________________________________________________________________________________________________________________________________

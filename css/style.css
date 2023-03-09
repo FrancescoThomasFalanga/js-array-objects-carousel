@@ -5,61 +5,77 @@
     font-family: 'Montserrat', sans-serif;
 }
 
+/* PAGE TITLE */
 h1 {
     text-align: center;
     margin: 20px;
 }
+/* /PAGE TITLE */
 
+
+/* COMMON CONTAINER */
 .container {
+    position: relative;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-flow: column wrap;
-    position: relative;
     max-width: 1000px;
     margin: 50px auto;
-
 }
+/* /COMMON CONTAINER */
 
+
+/* IMAGES */
 img {
     width: 100%;
     height: 500px;
     object-fit: cover;
 }
+/* ______________________________ */
+#active-image {
+    width: 100%;
+}
+/* /IMAGES */
 
+
+/* TITLE E TEXT */
 h2 {
     position: absolute;
-    bottom: 60px;
+    bottom: 100px;
     right: 40px;
-    margin: 20px 0;
     color: white;
     font-size: 32px;
 }
-
+/* ______________________________ */
 span {
     position: absolute;
     bottom: 50px;
     right: 40px;
     color: white;
     font-size: 18px;
+    text-align: end;
 }
+/* /TITLE E TEXT */
 
 
+/*  SLIDER */
 #left-arrow {
     position: absolute;
-    top: 10px;
-    right: 50%;
+    top: 50%;
+    left: 10px;
 }
 /* __________________________________ */
 #right-arrow {
     position: absolute;
-    bottom: 10px;
-    right: 50%;
+    bottom: 50%;
+    right: 10px;
 }
-
+/* ______________________________ */
 .fa-solid {
     padding: 2px 4px;
     border-radius: 50%;
     cursor: pointer;
     background-color: white;
 }
+/* /SLIDER */
