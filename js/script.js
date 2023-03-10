@@ -88,25 +88,26 @@ reverseButtonEl.addEventListener("click", () => {
 
 
 
-// al caricamento della pagina, l'immagine che verrà mostrata sarà quella con INDICE 0 in quanto, inizializzato il contatore è uguale a 0
-showImage();
 
 // Inserisco dinamicamente le thumbnail in pagina:
 images.forEach((activeElement) => {
-
+    
     thumbnailsElement.innerHTML += `<img src="${activeElement.image}" class="thumbnail">`;
-
+    
 })
 
 const thumbnails = document.querySelectorAll('.thumbnail');
 
 thumbnails.forEach((thumbnail, index) => {
-  thumbnail.addEventListener('click', () => {
-    isClick = index;
-    showImage();
-  });
+    thumbnail.addEventListener('click', () => {
+        isClick = index;
+        showImage();
+    });
 });
 
+
+// al caricamento della pagina, l'immagine che verrà mostrata sarà quella con INDICE 0 in quanto, inizializzato il contatore è uguale a 0
+showImage();
 
 
 upArrowEl.addEventListener("click", function() {
@@ -173,6 +174,11 @@ function showImage() {
 
     mainImage.innerHTML = `<img src="${images[isClick].image}" id="main-image"> <h2>${images[isClick].title}</h2> <span>${images[isClick].text}</span>`;
 
+    thumbnails.forEach((thumbnail) => {
+        thumbnail.classList.remove('active');
+      });
+    
+    thumbnails[isClick].classList.add('active');
 }
 
 // per iniziare il timer
